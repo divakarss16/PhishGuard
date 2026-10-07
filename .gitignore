@@ -1,0 +1,44 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python bytecode & cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Datasets (large files / user data)
+dataset/raw/*.csv
+dataset/processed/*.csv
+!dataset/raw/.gitkeep
+!dataset/processed/.gitkeep
+
+# Model binaries (trained artifacts)
+models/*.pkl
+models/*.joblib
+!models/.gitkeep
+
+# Operating system / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary / experimental files
+scratch/
+scratch_*.py
+cand.csv
+test.csv
+urldata_*.csv
+
+# Generated outputs
+outputs/
+
+# Backup model files
+models/*.bak

@@ -1,0 +1,1 @@
+"""PhishGuard core source package."""
