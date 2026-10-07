@@ -375,55 +375,6 @@ body {
   transform: translateY(0);
 }
 
-/* Sample URL Presets */
-.samples-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.samples-label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--color-text-dim);
-  text-transform: uppercase;
-  margin-right: 0.25rem;
-}
-
-.sample-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.3rem 0.65rem;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-}
-
-.phishing-chip {
-  background: var(--color-crimson-bg);
-  border: 1px solid var(--color-crimson-border);
-  color: var(--color-crimson);
-}
-.phishing-chip:hover {
-  background: rgba(255, 51, 102, 0.25);
-}
-
-.legitimate-chip {
-  background: var(--color-emerald-bg);
-  border: 1px solid var(--color-emerald-border);
-  color: var(--color-emerald-light);
-}
-.legitimate-chip:hover {
-  background: rgba(16, 185, 129, 0.25);
-}
-
 /* --------------------------------------------------------------------------
    RESULTS DISPLAY CARDS
    -------------------------------------------------------------------------- */

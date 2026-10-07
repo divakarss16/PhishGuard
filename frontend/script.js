@@ -72,16 +72,6 @@ function handleScanSubmit() {
 }
 
 /**
- * Helper to populate and scan sample URLs.
- */
-function fillSample(sampleUrl) {
-  if (urlInput) {
-    urlInput.value = sampleUrl;
-    scanUrl(sampleUrl);
-  }
-}
-
-/**
  * Send URL prediction request to FastAPI endpoint.
  */
 async function scanUrl(targetUrl) {
