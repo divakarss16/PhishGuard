@@ -610,44 +610,229 @@ body {
   word-break: break-all;
 }
 
-/* Evidence Risk Factors List */
-.evidence-box {
+/* --------------------------------------------------------------------------
+   ANALYSIS SEQUENCE (LOADING STATE)
+   -------------------------------------------------------------------------- */
+.loading-console-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
   margin-bottom: 1.25rem;
 }
 
-.evidence-title {
-  font-size: 0.85rem;
-  font-weight: 600;
+.analysis-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-variant);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.seq-step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text-dim);
+  opacity: 0.5;
+  transition: all 0.2s ease;
+}
+
+.seq-step.active {
+  color: var(--color-cyan);
+  opacity: 1;
+}
+
+.seq-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.seq-icon.spinning {
+  animation: spin 1s linear infinite;
+  color: var(--color-cyan);
+}
+
+.seq-icon.done {
+  color: var(--color-emerald-light);
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.seq-status {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-cyan);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION BOX HEADERS (URL Structure, Why Verdict, Evidence)
+   -------------------------------------------------------------------------- */
+.section-box-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-box-header h4 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
+  margin: 0;
 }
 
-.evidence-list {
+.box-icon {
+  font-size: 1.1rem;
+  color: var(--color-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   URL STRUCTURE PANEL
+   -------------------------------------------------------------------------- */
+.url-structure-box {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-variant);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.structure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+}
+
+.struct-item {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-high);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+}
+
+.struct-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.struct-value {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #dbfcff;
+  word-break: break-all;
+}
+
+/* --------------------------------------------------------------------------
+   WHY THIS VERDICT? SECTION
+   -------------------------------------------------------------------------- */
+.why-verdict-box {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-variant);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.why-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.evidence-item {
+.why-item {
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
-  font-size: 0.875rem;
-  color: var(--color-text-main);
+  font-size: 0.85rem;
   line-height: 1.4;
 }
 
-.evidence-item .item-icon {
+.why-icon {
   font-size: 1.1rem;
-  margin-top: 0.05rem;
   flex-shrink: 0;
+  margin-top: 0.05rem;
 }
 
-.evidence-item.phishing .item-icon { color: var(--color-crimson); }
-.evidence-item.legitimate .item-icon { color: var(--color-emerald-light); }
+.why-item.legitimate {
+  color: var(--color-emerald-light);
+}
+
+.why-item.phishing {
+  color: var(--color-crimson);
+}
+
+/* --------------------------------------------------------------------------
+   EVIDENCE CARDS (SUSPICIOUS PATTERNS / SAFETY INDICATORS)
+   -------------------------------------------------------------------------- */
+.evidence-box {
+  margin-bottom: 1.25rem;
+}
+
+.evidence-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.evidence-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.evidence-card.phishing {
+  background: var(--color-crimson-bg);
+  border: 1px solid var(--color-crimson-border);
+  color: var(--color-crimson);
+}
+
+.evidence-card.phishing .card-icon {
+  color: var(--color-crimson);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.evidence-card.legitimate {
+  background: var(--color-emerald-bg);
+  border: 1px solid var(--color-emerald-border);
+  color: var(--color-emerald-light);
+}
+
+.evidence-card.legitimate .card-icon {
+  color: var(--color-emerald-light);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
 
 .verdict-footer {
   display: flex;

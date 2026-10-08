@@ -92,26 +92,49 @@
 
     <!-- DYNAMIC RESULTS DISPLAY CONTAINER -->
     <section class="results-wrapper hidden" id="results-wrapper">
-      <!-- LOADING STATE -->
+      <!-- LOADING STATE & SCAN ANALYSIS SEQUENCE -->
       <div class="result-card loading-card hidden" id="loading-card">
-        <div class="spinner"></div>
-        <div class="loading-text">
-          <h3>Analyzing URL Telemetry...</h3>
-          <p>Extracting 38 numerical features &amp; executing XGBoost inference</p>
+        <div class="loading-console-header">
+          <div class="spinner"></div>
+          <div class="loading-text">
+            <h3>ANALYZING URL</h3>
+            <p>Processing request through 38 URL-based features</p>
+          </div>
         </div>
+        <div class="analysis-sequence" id="analysis-sequence">
+          <div class="seq-step" id="seq-step-1">
+            <span class="seq-icon material-symbols-outlined">sync</span>
+            <span class="seq-text">Validating URL structure</span>
+          </div>
+          <div class="seq-step" id="seq-step-2">
+            <span class="seq-icon material-symbols-outlined">sync</span>
+            <span class="seq-text">Extracting URL features</span>
+          </div>
+          <div class="seq-step" id="seq-step-3">
+            <span class="seq-icon material-symbols-outlined">sync</span>
+            <span class="seq-text">Analyzing suspicious patterns</span>
+          </div>
+          <div class="seq-step" id="seq-step-4">
+            <span class="seq-icon material-symbols-outlined">sync</span>
+            <span class="seq-text">Running XGBoost inference</span>
+          </div>
+          <div class="seq-step" id="seq-step-5">
+            <span class="seq-icon material-symbols-outlined">sync</span>
+            <span class="seq-text">Generating risk assessment</span>
+          </div>
+        </div>
+        <div class="seq-status" id="seq-status">INITIALIZING PIPELINE...</div>
       </div>
 
-      <!-- ERROR STATE -->
+      <!-- ERROR / INVALID URL STATE -->
       <div class="result-card error-card hidden" id="error-card">
         <div class="error-header">
-          <span class="material-symbols-outlined error-icon">error_med</span>
-          <h3 id="error-title">Analysis Unavailable</h3>
+          <span class="material-symbols-outlined error-icon" id="error-header-icon">error_med</span>
+          <h3 id="error-title">INVALID URL</h3>
         </div>
-        <p id="error-message" class="error-text">Failed to connect to PhishGuard API.</p>
+        <p id="error-message" class="error-text">Invalid URL format. Please enter a valid URL beginning with http:// or https://.</p>
       </div>
 
-
-      
       <!-- RESULT CARD (LEGITIMATE & PHISHING DYNAMIC STATES) -->
       <div class="result-card verdict-card hidden" id="verdict-card">
         <div class="verdict-header">
@@ -146,12 +169,56 @@
           <div class="url-display" id="evaluated-url">https://example.com</div>
         </div>
 
-        <!-- RISK FACTORS / CHARACTERISTICS LIST -->
-        <div class="evidence-box">
-          <h4 id="evidence-heading" class="evidence-title">Detected URL Indicators:</h4>
-          <ul class="evidence-list" id="evidence-list">
-            <!-- Dynamic list items populated via JS -->
+        <!-- URL STRUCTURE PANEL -->
+        <div class="url-structure-box">
+          <div class="section-box-header">
+            <span class="material-symbols-outlined box-icon">account_tree</span>
+            <h4>URL STRUCTURE</h4>
+          </div>
+          <div class="structure-grid">
+            <div class="struct-item">
+              <span class="struct-label">Protocol</span>
+              <span class="struct-value" id="struct-protocol">HTTPS</span>
+            </div>
+            <div class="struct-item">
+              <span class="struct-label">Hostname</span>
+              <span class="struct-value" id="struct-hostname">google.com</span>
+            </div>
+            <div class="struct-item">
+              <span class="struct-label">Path</span>
+              <span class="struct-value" id="struct-path">None</span>
+            </div>
+            <div class="struct-item">
+              <span class="struct-label">Query</span>
+              <span class="struct-value" id="struct-query">None</span>
+            </div>
+            <div class="struct-item">
+              <span class="struct-label">IP Address</span>
+              <span class="struct-value" id="struct-ip">No</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WHY THIS VERDICT? SECTION -->
+        <div class="why-verdict-box">
+          <div class="section-box-header">
+            <span class="material-symbols-outlined box-icon">help_outline</span>
+            <h4>WHY THIS VERDICT?</h4>
+          </div>
+          <ul class="why-list" id="why-list">
+            <!-- Dynamic why items populated via JS -->
           </ul>
+        </div>
+
+        <!-- RISK FACTORS / CHARACTERISTICS EVIDENCE GRID -->
+        <div class="evidence-box">
+          <div class="section-box-header">
+            <span class="material-symbols-outlined box-icon" id="evidence-icon">security</span>
+            <h4 id="evidence-heading" class="evidence-title">Suspicious URL Patterns</h4>
+          </div>
+          <div class="evidence-grid" id="evidence-list">
+            <!-- Dynamic evidence cards populated via JS -->
+          </div>
         </div>
 
         <div class="verdict-footer">
